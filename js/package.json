@@ -1,0 +1,12 @@
+{
+  "name": "project_euler_problems",
+  "version": "1.0.0",
+  "description": "Small colection of project Euler problems solutions",
+  "main": "index.js",
+  "scripts": {
+    "problem": "node ./index.js"
+  },
+  "author": "Georgi Lalev",
+  "license": "ISC",
+  "dependencies": {}
+}
