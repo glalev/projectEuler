@@ -11,4 +11,11 @@ const _findDivisors = (proper, n) => {
 const findDivisors = _findDivisors.bind(null, false);
 const findProperDivisors = _findDivisors.bind(null, true);
 
-module.exports = { findDivisors, findProperDivisors };
+const initArray = (n, a) => {
+  const arr = [];
+  for (var i = 0; i < n; i++) {
+    arr[i] = typeof a === 'function' ? a(i) : a;
+  }
+  return arr;
+}
+module.exports = { findDivisors, findProperDivisors, initArray };

@@ -11,8 +11,8 @@ const problem = (n = 20, m = 20) => {
   const row = Array(m).fill(0);
   const array = Array(n).fill(row);
 
-  for (var i = 0; i < n; i++) {
-    for (var j = 0; j < m; j++) {
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < m; j++) {
       const left = array[i][j - 1] || 1;
       const up = array[i - 1] ? array[i - 1][j] : 1;
 

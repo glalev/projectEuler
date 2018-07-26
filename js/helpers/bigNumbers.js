@@ -3,6 +3,10 @@ relative simple helpers functions of mine
 for basic arithmetic actions on big numbers represented as strings
 */
 
+// TODO:
+// add power, factorial
+// add division - for start not so performant algorithm and Integer division will be sufficient
+
 const ERRORS = {
   NOT_A_STRING: 'All operations require numbres to be represented as strings',
   NOT_A_NUMBER: 'Please provide a prober number'
@@ -130,7 +134,7 @@ const mult = (x, y) => {
 
   const z0 = mult(x0, y0);
   const z2 = mult(x1, y1);
-  // todo change minus to take multiple paramethers
+  // TODO change minus to take multiple paramethers
   const z1 = minus(minus(mult(plus(x1, x0), plus(y1, y0)), z2), z0);
 
   return plus((z2 + '0'.repeat(2 * m)), (z1 + '0'.repeat(m)), z0);

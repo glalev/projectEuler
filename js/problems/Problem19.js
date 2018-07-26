@@ -14,15 +14,15 @@ How many Sundays fell on the first of the month during the twentieth century (1 
 Answer: 171
 */
 
-//              1   2   3   4   5   6   7   8   9   10  11  12
 const YEARS = 101;
+//              1   2   3   4   5   6   7   8   9   10  11  12
 const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const isLeap = (year) => {
   if (year % 4 !== 0) return false;
 
   return !(year % 100 === 0 && year % 400 !== 0);
 };
-const years = Array(YEARS)
+const sundays = Array(YEARS)
   .fill(months)
   // handling leap years
   .map((month, i) => {
@@ -35,6 +35,6 @@ const years = Array(YEARS)
   .reduce((arr, days, i) => arr.concat(arr[i] + days), [1])
   .slice(12, YEARS * 12) // removing 1990 and 01.01.2001
   .map((day) => day % 7 === 0 ? 1 : 0) // each Sunday is marked as 1
-  .reduce((sum, a) => sum + a, 0);
+  .reduce((sum, a) => sum + a, 0); // counting the Sundays
 
-module.exports = () => years;
+module.exports = () => sundays;
