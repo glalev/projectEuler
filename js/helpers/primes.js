@@ -18,6 +18,7 @@ const isPrime = (number) => {
 };
 
 const isPrimeFromPrimes = (number, primes) => {
+  if (number <= 1) return false;
   let s = Math.sqrt(number);
 
   for (let i = 0, l = primes.length; i < l; i++) {
@@ -44,6 +45,25 @@ const ntPrime = (n) => {
 
   return i - 2;
 };
+
+const generateNPrimes = (n) => {
+  n = Number.parseInt(n);
+  let primes = [];
+  if (n < 1) return [];
+  if (n === 1) return [2];
+
+  let i = 3;
+  while (n + 1 >= 2) {
+    if (isPrimeFromPrimes(i, primes)) {
+      primes.push(i);
+      n--;
+    }
+    i += 2;
+  }
+
+  return primes;
+}
+
 // TODO - not working, fixed it
 // uses Sieve of Eratosthenes https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 // as much simple alternative of Sieve of Atkin https://en.wikipedia.org/wiki/Sieve_of_Atkin
@@ -64,4 +84,4 @@ var generatePrimesTo = (n) => {
   return primes.map((p, i) => p ? i : p).filter(p => p);
 };
 
-module.exports = { isPrime, isPrimeFromPrimes, ntPrime };
+module.exports = { isPrime, isPrimeFromPrimes, ntPrime, generateNPrimes };
