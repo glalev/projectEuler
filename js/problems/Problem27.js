@@ -34,7 +34,7 @@ const test = (fn) => {
   return i;
 };
 
-module.exports = (n) => {
+module.exports = () => {
   let max = 0;
   let product = 0;
   for (let a = -999; a < 1000; a++) {
