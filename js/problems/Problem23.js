@@ -13,28 +13,37 @@ limit cannot be reduced any further by analysis even though it is known that the
 cannot be expressed as the sum of two abundant numbers is less than this limit.
 
 Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.
+
+Answer: 4179871
 */
 
 const LIMIT = 28123;
-const findProperDivisors = require('../helpers').findProperDivisors;
+const {findProperDivisors, initArray} = require('../helpers');
 const isAbundant = (n) => {
-  const sum = findProperDivisors(n).reduce((sum, a) => sum + a, 0);
+  const divisors = findProperDivisors(n);
+  const sum = divisors.reduce((sum, a) => sum + a, 0);
 
   return sum > n;
 };
 
-const findAbundantUpTo = (limit = LIMIT) => {
-  let abundantNumbers = [];
-
+const generateAbundant = (limit = LIMIT) => {
+  let hash = {};
+  let numbers = [];
   for (let i = 12; i <= limit; i++) {
-    if (isAbundant(i)) abundantNumbers.push(i);
+    if (isAbundant(i)) {
+      hash[i] = true;
+      numbers.push(i);
+    }
   }
-
-  return abundantNumbers;
+  return {hash, numbers};
 };
 
-const problem = (n) => {
-  // TODO not solved
+const isSumFromAbundant = (n, {hash, numbers}) => numbers.find(a => hash[n - a]);
+const problem = (n = LIMIT) => {
+  const abundantNumbers = generateAbundant(LIMIT);
+  return initArray(LIMIT, i => i + 1)
+    .filter(a => !isSumFromAbundant(a, abundantNumbers))
+    .reduce((sum, a) => sum + a, 0);
 };
 
 module.exports = problem;
