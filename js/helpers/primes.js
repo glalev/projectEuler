@@ -48,9 +48,9 @@ const ntPrime = (n) => {
 
 const generateNPrimes = (n) => {
   n = Number.parseInt(n);
-  let primes = [];
+  let primes = [2];
   if (n < 1) return [];
-  if (n === 1) return [2];
+  if (n === 1) return primes;
 
   let i = 3;
   while (n + 1 >= 2) {
