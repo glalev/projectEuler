@@ -19,6 +19,8 @@ const isPrime = (number) => {
 
 const isPrimeFromPrimes = (number, primes) => {
   if (number <= 1) return false;
+  if (number === 2) return true;
+
   let s = Math.sqrt(number);
 
   for (let i = 0, l = primes.length; i < l; i++) {
@@ -45,6 +47,19 @@ const ntPrime = (n) => {
 
   return i - 2;
 };
+
+const primeGenarator = function*(){
+  let i = 1;
+  let primes = [];
+  while (true) {
+    if (i === 1) yield 2;
+    if (isPrimeFromPrimes(i, primes)) {
+      primes.push(i);
+      yield i;
+    }
+    i += 2;
+  }
+}
 
 const generateNPrimes = (n) => {
   n = Number.parseInt(n);
@@ -84,4 +99,4 @@ var generatePrimesTo = (n) => {
   return primes.map((p, i) => p ? i : p).filter(p => p);
 };
 
-module.exports = { isPrime, isPrimeFromPrimes, ntPrime, generateNPrimes };
+module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes };

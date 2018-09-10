@@ -1,5 +1,5 @@
 const { minus, plus, mult } = require('./bigNumbers');
-const { isPrime, isPrimeFromPrimes, ntPrime, generateNPrimes } = require('./primes');
+const { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes } = require('./primes');
 const loadData = require('./loadData');
 const { findProperDivisors, findDivisors, initArray } = require('./misc');
 
@@ -10,6 +10,7 @@ module.exports = {
   mult,
   isPrime,
   isPrimeFromPrimes,
+  primeGenarator,
   ntPrime,
   loadData,
   findDivisors,
