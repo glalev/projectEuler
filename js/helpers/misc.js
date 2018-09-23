@@ -19,3 +19,5 @@ const initArray = (n, a) => {
   return arr;
 }
 module.exports = { findDivisors, findProperDivisors, initArray };
+
+// TODO add head, tail, init function for arrays and strings
