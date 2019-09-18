@@ -79,6 +79,26 @@ const generateNPrimes = (n) => {
   return primes;
 }
 
+const primeFactors = (n) => {
+  const map = {}
+  const factors = []
+
+  while(n % 2 === 0) {
+    n = n / 2
+    if(factors.length === 0) factors.push(2)
+  }
+  for (let i = 3; i <= Math.sqrt(n); i += 2) {
+    while(n % i === 0) {
+      n = n / i
+      if(!map[i]) {
+        map[i] = true;
+        factors.push(i)
+      }
+    }
+  }
+
+  return n > 2 ? factors.concat(n) : factors
+}
 // TODO - not working, fixed it
 // uses Sieve of Eratosthenes https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 // as much simple alternative of Sieve of Atkin https://en.wikipedia.org/wiki/Sieve_of_Atkin
@@ -99,4 +119,4 @@ var generatePrimesTo = (n) => {
   return primes.map((p, i) => p ? i : p).filter(p => p);
 };
 
-module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes };
+module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes, primeFactors };
