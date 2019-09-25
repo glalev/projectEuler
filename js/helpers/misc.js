@@ -18,6 +18,33 @@ const initArray = (n, a) => {
   }
   return arr;
 }
-module.exports = { findDivisors, findProperDivisors, initArray };
+
+const heapPermutation = (arr) => {
+  const result = [];
+  const _heapPermutation = (arr, size = arr.length, i) => {
+    if (size === 1) result.push(parseInt(arr.join(''), 10));
+
+    for (let i = 0; i < size; i++) {
+      _heapPermutation(arr, size - 1, i);
+
+      if (size % 2 === 1) {
+        // if size is odd, swap first and last element
+        let temp = arr[0];
+        arr[0] = arr[size - 1];
+        arr[size - 1] = temp;
+      } else {
+        // else size is even, swap ith and last element
+        let temp = arr[i];
+        arr[i] = arr[size - 1];
+        arr[size - 1] = temp;
+      }
+    }
+  };
+  _heapPermutation(arr);
+
+  return result;
+};
+
+module.exports = { findDivisors, findProperDivisors, initArray, heapPermutation };
 
 // TODO add head, tail, init function for arrays and strings
