@@ -16,6 +16,8 @@ that is, a ratio of 8/13 ≈ 62%.
 If one complete new layer is wrapped around the spiral above, a square spiral with side length 9
 will be formed. If this process is continued, what is the side length of the square spiral
 for which the ratio of primes along both diagonals first falls below 10%?
+
+Answer: 26241
 */
 
 /*
@@ -26,14 +28,27 @@ d3 = 4 * n^2 - 2*n + 1 /3 to 31/
 d4 = 4 * n^2 - 4*n + 1 /9 to 49/ - these are all square numbers, so no need to calculated
 */
 
-// const { plus, mult } = require('../helpers');
+const { isPrime } = require('../helpers');
 
+const THRESHOLD = 0.1;
 const d1 = n => 4 * n ** 2 + 1;
 const d2 = n => 4 * n ** 2 + 2 * n + 1;
 const d3 = n => 4 * n ** 2 - 2 * n + 1;
 
 const problem = () => {
+	let length = 1;
+	let count = 1;
+	let primes = 0;
+	let i = 1;
 
+	while (!primes || primes / count > THRESHOLD) {
+			primes += [d1(i), d2(i), d3(i)].filter(isPrime).length;
+			count += 4;
+			length += 2;
+			i += 1;
+	}
+
+	return length;
 };
 
 module.exports = problem;
