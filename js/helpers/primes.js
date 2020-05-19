@@ -5,7 +5,7 @@
 //
 //   return isPrime(i) ? ntPrime(--n, i+2) : ntPrime(n, i+2);
 // }
-
+let GLOBAL_GENERATOR;
 const isPrime = (number) => {
   // if the number is 1 or it is divisible by 2 /while not beeing 2/ - it is not a prime
   if (number < 2 || (number % 2 === 0 && number !== 2)) return false;
@@ -48,7 +48,9 @@ const ntPrime = (n) => {
   return i - 2;
 };
 
+
 const primeGenarator = function*(){
+
   let i = 1;
   let primes = [];
   while (true) {
@@ -59,6 +61,22 @@ const primeGenarator = function*(){
     }
     i += 2;
   }
+}
+
+GLOBAL_GENERATOR = primeGenarator()
+
+const generetePrimesUpTo = (end, min = 2, useLocalGenerator = false) => {
+  const result = [] ;
+  const generator = useLocalGenerator ? primeGenarator() : GLOBAL_GENERATOR;
+  let next = generator.next().value;
+
+  while (next <= end) {
+    if (next >= min) {
+      result.push(next)
+    }
+    next = generator.next().value;
+  }
+  return result
 }
 
 const generateNPrimes = (n) => {
@@ -119,4 +137,4 @@ var generatePrimesTo = (n) => {
   return primes.map((p, i) => p ? i : p).filter(p => p);
 };
 
-module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes, primeFactors };
+module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes, generetePrimesUpTo, primeFactors };

@@ -19,10 +19,13 @@ const initArray = (n, a) => {
   return arr;
 }
 
-const heapPermutation = (arr) => {
+const heapPermutation = (arr, convertToNumbers = true) => {
   const result = [];
   const _heapPermutation = (arr, size = arr.length, i) => {
-    if (size === 1) result.push(parseInt(arr.join(''), 10));
+    if (size === 1) {
+      const el = convertToNumbers ? parseInt(arr.join(''), 10) : arr.join('');
+      result.push(el)
+    ;}
 
     for (let i = 0; i < size; i++) {
       _heapPermutation(arr, size - 1, i);
