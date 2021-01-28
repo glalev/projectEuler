@@ -17,15 +17,30 @@ const initArray = (n, a) => {
     arr[i] = typeof a === 'function' ? a(i) : a;
   }
   return arr;
-}
+};
+
+const greatesCommonFactor = (a, b) => {
+  if (a === b) return a;
+  if (b > a) return greatesCommonFactor(b, a);
+
+  const devisorsA = findDivisors(a).sort((n, m) => m - n);
+  const devisorsB = findDivisors(b).reduce((obj, n) => {
+    obj[n] = true;
+    return obj;
+  }, {});
+
+  return devisorsA.reduce((gcf, n) => {
+    return !gcf && devisorsB[n] ? n : gcf;
+  }, null);
+};
 
 const heapPermutation = (arr, convertToNumbers = true) => {
   const result = [];
   const _heapPermutation = (arr, size = arr.length, i) => {
     if (size === 1) {
       const el = convertToNumbers ? parseInt(arr.join(''), 10) : arr.join('');
-      result.push(el)
-    ;}
+      result.push(el);
+    }
 
     for (let i = 0; i < size; i++) {
       _heapPermutation(arr, size - 1, i);
@@ -48,6 +63,6 @@ const heapPermutation = (arr, convertToNumbers = true) => {
   return result;
 };
 
-module.exports = { findDivisors, findProperDivisors, initArray, heapPermutation };
+module.exports = { findDivisors, findProperDivisors, initArray, heapPermutation, greatesCommonFactor };
 
 // TODO add head, tail, init function for arrays and strings
