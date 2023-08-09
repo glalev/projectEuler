@@ -45,7 +45,7 @@ const problem = (n) => {
     }
   }
 
-  return output.reduce((min, [k, l]) => Math.min(Math.abs(k - l)), Infinity);
+  return output.reduce((_, [k, l]) => Math.min(Math.abs(k - l)), Infinity);
 };
 
 module.exports = problem;

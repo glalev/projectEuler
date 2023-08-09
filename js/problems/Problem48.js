@@ -17,7 +17,7 @@ const lastTenOfPow = (n, pow, previous = n) => {
 }
 
 const problem = () => {
-  return initArray(1000, (i) => lastTenOfPow(i+1, i+1)).reduce((sum, a) => sum + a, 0) % TEN_BIL;
+  return initArray(1000, (i) => lastTenOfPow(i + 1, i + 1)).reduce((sum, a) => sum + a, 0) % TEN_BIL;
 };
 
 module.exports = problem;

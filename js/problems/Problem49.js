@@ -12,7 +12,7 @@ What 12-digit number do you form by concatenating the three terms in this sequen
 Answer: 296962999629
 */
 
-const { generateNPrimes } = require('../helpers');
+const { generateNPrimes } = require("../helpers");
 
 const TERM = 3330;
 const SEQUENCE = [1487, 4817, 8147];
@@ -32,7 +32,7 @@ const problem = () => {
   // all the 4-digit primes, I just find the indexes by testing
   const primes = generateNPrimes(1228).slice(168);
   const permutations = primes.reduce((obj, prime) => {
-    const key = prime.toString().split('').sort().join('');
+    const key = prime.toString().split("").sort().join("");
     obj[key] = obj[key] || [];
     obj[key].push(prime);
     return obj;
@@ -40,8 +40,8 @@ const problem = () => {
 
   const string = Object.values(permutations)
     .map(properSequence)
-    .filter(seq => seq.length === 3 && seq[0] !== SEQUENCE[0])[0]
-    .join('');
+    .filter((seq) => seq.length === 3 && seq[0] !== SEQUENCE[0])[0]
+    .join("");
 
   return parseInt(string, 10);
 };

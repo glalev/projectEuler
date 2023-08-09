@@ -48,9 +48,7 @@ const ntPrime = (n) => {
   return i - 2;
 };
 
-
-const primeGenarator = function*(){
-
+const primeGenarator = function* () {
   let i = 1;
   let primes = [];
   while (true) {
@@ -61,23 +59,23 @@ const primeGenarator = function*(){
     }
     i += 2;
   }
-}
+};
 
-GLOBAL_GENERATOR = primeGenarator()
+GLOBAL_GENERATOR = primeGenarator();
 
 const generetePrimesUpTo = (end, min = 2, useLocalGenerator = false) => {
-  const result = [] ;
+  const result = [];
   const generator = useLocalGenerator ? primeGenarator() : GLOBAL_GENERATOR;
   let next = generator.next().value;
 
   while (next <= end) {
     if (next >= min) {
-      result.push(next)
+      result.push(next);
     }
     next = generator.next().value;
   }
-  return result
-}
+  return result;
+};
 
 const generateNPrimes = (n) => {
   n = Number.parseInt(n);
@@ -95,34 +93,37 @@ const generateNPrimes = (n) => {
   }
 
   return primes;
-}
+};
 
 const primeFactors = (n) => {
-  const map = {}
-  const factors = []
+  const map = {};
+  const factors = [];
 
-  while(n % 2 === 0) {
-    n = n / 2
-    if(factors.length === 0) factors.push(2)
+  while (n % 2 === 0) {
+    n = n / 2;
+    if (factors.length === 0) factors.push(2);
   }
   for (let i = 3; i <= Math.sqrt(n); i += 2) {
-    while(n % i === 0) {
-      n = n / i
-      if(!map[i]) {
+    while (n % i === 0) {
+      n = n / i;
+      if (!map[i]) {
         map[i] = true;
-        factors.push(i)
+        factors.push(i);
       }
     }
   }
 
-  return n > 2 ? factors.concat(n) : factors
-}
+  return n > 2 ? factors.concat(n) : factors;
+};
 // TODO - not working, fixed it
 // uses Sieve of Eratosthenes https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 // as much simple alternative of Sieve of Atkin https://en.wikipedia.org/wiki/Sieve_of_Atkin
 var generatePrimesTo = (n) => {
   let off = 0;
-  let primes = 'n'.repeat(n).split('').map((_, i) => i > 1);
+  let primes = "n"
+    .repeat(n)
+    .split("")
+    .map((_, i) => i > 1);
   let next = primes.indexOf(true);
   while (next < n && next !== -1) {
     let j = next;
@@ -134,7 +135,15 @@ var generatePrimesTo = (n) => {
     next = index > -1 ? next + index + 1 : -1;
   }
 
-  return primes.map((p, i) => p ? i : p).filter(p => p);
+  return primes.map((p, i) => (p ? i : p)).filter((p) => p);
 };
 
-module.exports = { isPrime, isPrimeFromPrimes, primeGenarator, ntPrime, generateNPrimes, generetePrimesUpTo, primeFactors };
+module.exports = {
+  isPrime,
+  isPrimeFromPrimes,
+  primeGenarator,
+  ntPrime,
+  generateNPrimes,
+  generetePrimesUpTo,
+  primeFactors,
+};
